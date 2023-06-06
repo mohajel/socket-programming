@@ -29,12 +29,13 @@ class Server
 
 public:
     Server();
+    ~Server();
     void start();
     void set_fd_set();
     void run_server();
 
 private:
-    Logger logger;
+    Logger *logger;
     int server_port;
     std::string server_ip;
     int setup_server(int port); 

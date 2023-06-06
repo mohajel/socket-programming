@@ -1,0 +1,13 @@
+[Tue Jun  6 18:50:06 2023] client with fd = 5 send salam
+[Tue Jun  6 19:05:48 2023] client with fd = 5 send salam
+[Tue Jun  6 19:05:51 2023] client with fd = 5 send dsjkc
+[Tue Jun  6 19:10:24 2023] Server is binded.
+[Tue Jun  6 19:10:24 2023] Server is listening.
+[Tue Jun  6 19:15:06 2023] 
+[Tue Jun  6 19:15:06 2023] 
+[Tue Jun  6 19:15:59 2023] 
+[Tue Jun  6 19:15:59 2023] 
+[Tue Jun  6 19:16:24 2023] 
+[Tue Jun  6 19:16:24 2023] 
+[Tue Jun  6 19:18:12 2023] SERVER_BINDED_SUCCESSFULLY
+[Tue Jun  6 19:18:12 2023] SERVER_IS_LISTENING

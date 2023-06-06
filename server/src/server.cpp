@@ -2,6 +2,7 @@
 
 #include "server.hpp"
 #include "manual.hpp"
+#include "error.hpp"
 
 #include <iostream>
 
@@ -9,13 +10,19 @@ using namespace std;
 
 Server::Server()
     :
-    logger(Logger(Paths::LOG_SERVER_PATH)),
     server_fd(NOT_CONNECTED),
+    server_port(SERVER_PORT),
+    server_ip(SERVER_IP),
     max_sd(0)
 {
-    server_port = 8181;
-    server_ip = "127.0.0.1";
+    this->logger = new Logger(Paths::LOG_SERVER_PATH);
 }
+
+Server::~Server()
+{
+    delete this->logger;
+}
+
 
 void Server::start() 
 {
@@ -62,7 +69,8 @@ void Server::run_server()
                 }
                 
                 else // client sending msg
-                { 
+                {
+                    string msg = "";
                     char command[MAX_STRING_SIZE] = {0};
                     if (recv(i , command, MAX_STRING_SIZE, 0) == 0) 
                     { // EOF
@@ -71,7 +79,10 @@ void Server::run_server()
                         FD_CLR(i, &master_set);
                         continue;
                     }
-                    printf("client with fd = %d send %s \n", i, command);
+                    // printf("client with fd = %d send %s \n", i, command);
+                    msg += "client with fd = " + to_string(i) + " send " + command;
+                    logger->log(msg);
+
                     // logger.log("User", i, command);
                     // logger.log("Server", i, response);
                     // int status = send(i, response.c_str(), strlen(response.c_str()), 0);
@@ -89,10 +100,7 @@ int Server::setup_server(int port)
     int server_fd;
     server_fd = socket(AF_INET, SOCK_STREAM, 0);
 	if (server_fd < 0)
-	{
-		cerr << "Fail to create socket" << endl;
-		exit(1);
-	}
+        throw Error(101);
 
     int opt = 1;
     setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt));
@@ -102,20 +110,14 @@ int Server::setup_server(int port)
     address.sin_port = htons(port);
 
     if(bind(server_fd, (struct sockaddr *)&address, sizeof(address)) < 0)
-	{
-		cerr << "Error while binding" << endl;
-		exit(1);
-	}
+        throw Error(102);
 	else
-		cout << "Socket binded" << endl;
+		this->logger->log(Info::status[230], KGRN);
 
 	if(listen(server_fd, MAX_CONNECTIONS) < 0)
-	{
-		cerr << "Error in listening." << endl;;
-		exit(1);
-	}
+        throw Error(103);
 	else
-		cout << "Server is listening." << endl;
+        this->logger->log(Info::status[231], KGRN);
 
     return server_fd;
 }

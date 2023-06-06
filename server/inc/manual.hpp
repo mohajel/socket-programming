@@ -6,6 +6,16 @@
 #include <sstream>
 #include <map>
 
+#define SERVER_IP "127.0.0.1"
+#define SERVER_PORT 8181
+#define MAX_CONNECTIONS 20
+#define MAX_NAME_SIZE 256
+#define MAX_STRING_SIZE 4096
+#define NOT_CONNECTED -3
+#define NOT_FOUND -1
+#define STD_IN 0
+#define STD_OUT 1
+
 #define MAX_CONNECTIONS 20
 #define MAX_NAME_SIZE 256
 #define MAX_STRING_SIZE 4096
@@ -32,43 +42,17 @@ namespace Paths
     const std::string LOG_SERVER_PATH = "../logs/server.log";
 }
 
-namespace FileDataContainers
-{
-    struct config
-    {
-        std::string hostName;
-        int commandChannelPort;
-    };
-
-    struct UserInfo
-    {
-        int id, purse;
-        std::string user, password, phoneNumber, address;
-        bool admin;
-    };
-
-    struct RentInfo
-    {
-        int id, numOfBeds;
-        std::string reserveDate, checkoutDate;
-    };
-    
-    struct RoomInfo
-    {
-        int number, status, price, maxCapacity, capacity;
-        std::vector<RentInfo> users;
-    };
-}
-
 struct Info
 {
     static std::map<int,std::string> create_map()
     {
         std::map<int,std::string> messages = 
         {
-            {101, "DESIRED_ROOM_WAS_NOT_FOUND"},
-            {102, "YOUR_RESERVATION_WAS_NOT_FOUND"},
-            {103, "YOU_MUST_LEAVE_NOT_CANCEL"},
+            {101, "CANNOT_CREATE_FD_FOR_SERVER"},
+            {102, "ERROR_WHILE_BINDING"},
+            {103, "ERROR_IN_LISTENING"},
+
+
             {104, "SUCCESSFULLY_ADDED"},
             {105, "SUCCESSFULLY_MODIFIED"},
             {106, "SUCCESSFULLY_DELETED"},
@@ -78,8 +62,10 @@ struct Info
             {111, "THIS_ROOM_ALREADY_EXISTS"},
             {112, "YOU_ARE_NOT_IN_ROOM_YET"},
             {201, "USER_LOGED_OUT_SUCCESSFULLY"},
-            {230, "USER_LOGED_IN"},
-            {231, "USER_SUCCESSFULLY_SIGNED_UP"},
+
+            {230, "SERVER_BINDED_SUCCESSFULLY"},
+            {231, "SERVER_IS_LISTENING"},
+
             {232, "YOU_LOGED_IN_BEFORE"},
             {311, "USER_SIGNED_UP.ENTER_YOUR -PASS-MONEY-PHONE-ADDR-"},
             {312, "INFORMATION_CHANGED_SUCCESSFULLY"},
