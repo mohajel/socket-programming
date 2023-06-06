@@ -10,6 +10,6 @@ map<int,string> Info::status =  Info::create_map();
 int main(int argc, char const *argv[]) 
 {
     Server server;
-    server.start_and_run_server();
+    server.start();
     return 0;
 }

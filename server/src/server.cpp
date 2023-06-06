@@ -9,7 +9,7 @@ using namespace std;
 
 Server::Server()
     :
-    logger(Logger()),
+    logger(Logger(Paths::LOG_SERVER_PATH)),
     server_fd(NOT_CONNECTED),
     max_sd(0)
 {
@@ -17,7 +17,7 @@ Server::Server()
     server_ip = "127.0.0.1";
 }
 
-void Server::start_and_run_server() 
+void Server::start() 
 {
     server_fd = setup_server(server_port);
     set_fd_set();

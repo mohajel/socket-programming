@@ -29,10 +29,7 @@
 
 namespace Paths
 {
-    const std::string CONFIG_SERVER_DATA_PATH = "./../database/config.json";
-    const std::string USERS_DATA_PATH = "./../database/users.json";
-    const std::string ROOMS_DATA_PATH = "./../database/rooms.json";
-    const std::string LOG_CLUSTER_PATH = "./../cluster.log";
+    const std::string LOG_SERVER_PATH = "../logs/server.log";
 }
 
 namespace FileDataContainers
@@ -98,19 +95,3 @@ struct Info
     }
     static std::map<int,std::string> status;
 };
-
-namespace RoomStatus 
-{
-    const int EMPTY = 0;
-    const int FULL = 1;
-    const std::vector<std::string> str_form = {
-        "EMPTY",
-        "FULL"
-    };
-}
-
-namespace EmptyFilterStatus 
-{
-    const int ENABLE = 1;
-    const int DISABLE = 0;
-}

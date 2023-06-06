@@ -22,14 +22,3 @@ string Error::what(bool more_info)
 
     return more_info ? error_msg + " -- " + extra_info : error_msg;
 }
-
-Message::Message(string text_)
-    :
-    text(text_)
-{
-}
-
-string Message::what()
-{
-    return text;
-}

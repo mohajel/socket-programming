@@ -1,10 +1,16 @@
 #pragma once
 
 #include <string>
+#include <iostream>
+#include <fstream>
+#include <string.h>
 
 class Logger
 {
 public:
-    Logger();
-    void log(std::string roll, int fd, std::string command);
+    Logger(std::string log_file_name);
+    void log(std::string type, std::string command);
+
+private:
+    std::string log_file_name;
 };

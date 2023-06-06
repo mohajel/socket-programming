@@ -29,7 +29,7 @@ class Server
 
 public:
     Server();
-    void start_and_run_server();
+    void start();
     void set_fd_set();
     void run_server();
 
