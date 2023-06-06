@@ -51,6 +51,8 @@ public:
 
     void log(std::string message, std::string colour = KWHT) 
     {
+        if (message == "")
+            return;
         std::string data = "[" + this->get_time_stamp() + "] " + message;
         file_ << data << std::endl;
         std::cout << colour << data << KWHT << std::endl;

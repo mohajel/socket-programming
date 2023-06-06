@@ -64,33 +64,32 @@ void Server::run_server()
                     char command[MAX_STRING_SIZE] = {0};
                     int last_char = read(STD_IN, command, MAX_STRING_SIZE);
                     command[last_char - 1] = '\0';
-                    printf("YOU ENTERED %s\n\n",command);
-                    char* first_arg = strtok(command, " ");
+                    this->logger->log("server :: " + string(command));
                 }
-                
                 else // client sending msg
                 {
-                    string msg = "";
-                    char command[MAX_STRING_SIZE] = {0};
-                    if (recv(i , command, MAX_STRING_SIZE, 0) == 0) 
-                    { // EOF
-                        printf("%s***\t client fd = %d closed\t***%s\n",KCYN, i, KWHT);
-                        close(i);
-                        FD_CLR(i, &master_set);
-                        continue;
-                    }
-                    // printf("client with fd = %d send %s \n", i, command);
-                    msg += "client with fd = " + to_string(i) + " send " + command;
-                    logger->log(msg);
-
-                    // logger.log("User", i, command);
-                    // logger.log("Server", i, response);
-                    // int status = send(i, response.c_str(), strlen(response.c_str()), 0);
-                    // if (status == 0)
-                    //     printf("%s***\t could not send to client fd = %d\t***%s\n",KRED, i, KWHT);
+                    this->handle_clients_request(i);
                 }
             }
         }
+    }
+}
+
+void Server::handle_clients_request(int client_fd)
+{
+    char command[MAX_STRING_SIZE] = {0};
+    if (recv(client_fd , command, MAX_STRING_SIZE, 0) == 0) // EOF client sending close signal
+    {
+        this->logger->log("client with fd = " + to_string(client_fd) + " closed", KCYN);
+        close(client_fd);
+        FD_CLR(client_fd, &master_set);   
+    }
+    else // client sending msg
+    {
+        logger->log("client with fd = " + to_string(client_fd) + " :: " + command);
+        int status = send(client_fd, command, strlen(command), 0);
+        if (status == 0)
+            printf("%s***\t could not send to client fd = %d\t***%s\n",KRED, client_fd, KWHT);
     }
 }
 
@@ -130,3 +129,4 @@ int Server::accept_client(int server_fd)
     client_fd = accept(server_fd, (struct sockaddr *)&client_address, (socklen_t*) &address_len);
     return client_fd;
 }
+

@@ -35,11 +35,13 @@ public:
     void run_server();
 
 private:
+    void handle_clients_request(int client_fd);
+    int setup_server(int port); 
+    int accept_client(int server_fd);
+
     Logger *logger;
     int server_port;
     std::string server_ip;
-    int setup_server(int port); 
-    int accept_client(int server_fd);
 
     int server_fd;
     fd_set master_set;
