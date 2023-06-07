@@ -8,6 +8,8 @@
 
 #define SERVER_IP "127.0.0.1"
 #define SERVER_PORT 8181
+#define NO_ID_ASSIGNED -1
+
 #define MAX_CONNECTIONS 20
 #define MAX_NAME_SIZE 256
 #define MAX_STRING_SIZE 4096
@@ -51,16 +53,19 @@ struct Info
             {101, "CANNOT_CREATE_FD_FOR_SERVER"},
             {102, "ERROR_WHILE_BINDING"},
             {103, "ERROR_IN_LISTENING"},
+            {104, "CLIENT_ALREADY_HAS_AN_ID"},
+            {105, "INVALID_NUMBER_FORMAT"},
+            {106, "INVALID_COMMAND_FORMAT"},
+            {107, "COULD_NOT_SEND_RESPONSE_TO_CLIENT"},
+            {108, "INVALID_SENDER_ID"},
 
-
-            {104, "SUCCESSFULLY_ADDED"},
-            {105, "SUCCESSFULLY_MODIFIED"},
-            {106, "SUCCESSFULLY_DELETED"},
-            {108, "YOUR_ACCOUNT_BALANCE_IS_NOT_ENOUGH"},
             {109, "THE_ROOM_CAPACITY_IS_FULL"},
             {110, "SUCCESSFULLY_DONE"},
             {111, "THIS_ROOM_ALREADY_EXISTS"},
             {112, "YOU_ARE_NOT_IN_ROOM_YET"},
+
+            {200, "REQUEST_HANDELED_SUCCESSFULLY"},
+
             {201, "USER_LOGED_OUT_SUCCESSFULLY"},
 
             {230, "SERVER_BINDED_SUCCESSFULLY"},
@@ -81,3 +86,32 @@ struct Info
     }
     static std::map<int,std::string> status;
 };
+
+vector<string> split_string(string line, string delimiters)
+{
+    vector<string> result;
+    string temp;
+    for (char i : line)
+        if (delimiters.find(i) != string::npos)
+        {
+            if (!temp.empty())
+                result.push_back(temp);
+            temp = "";
+        }
+        else
+            temp += i;
+    if (!temp.empty())
+        result.push_back(temp);
+    return result;
+}
+
+int string_to_int(const std::string& str) {
+    try 
+    {
+        return std::stoi(str);
+    } 
+    catch (const std::invalid_argument& ia) 
+    {
+        return -1;
+    }
+}

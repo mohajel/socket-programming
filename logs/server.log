@@ -4,3 +4,13 @@
 [Tue Jun  6 21:15:03 2023] client with fd = 5 :: salam
 [Tue Jun  6 21:15:07 2023] client with fd = 5 :: ok
 [Tue Jun  6 21:15:23 2023] client with fd = 5 :: jjjj
+[Wed Jun  7 19:13:24 2023] SERVER_BINDED_SUCCESSFULLY
+[Wed Jun  7 19:13:24 2023] SERVER_IS_LISTENING
+[Wed Jun  7 19:13:27 2023] new client with fd = 5 joined
+[Wed Jun  7 19:13:35 2023] server :: slaam
+[Wed Jun  7 19:13:40 2023] client with fd = 5 :: cli
+[Wed Jun  7 19:13:47 2023] client with fd = 5 closed
+[Wed Jun  7 19:13:49 2023] new client with fd = 5 joined
+[Wed Jun  7 19:13:52 2023] client with fd = 5 closed
+[Wed Jun  7 19:28:06 2023] SERVER_BINDED_SUCCESSFULLY
+[Wed Jun  7 19:28:06 2023] SERVER_IS_LISTENING

@@ -1,28 +1,17 @@
 #pragma once
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
 #include <string.h>
-#include <arpa/inet.h>
-#include <sys/time.h>
-#include <string.h> 
-#include <signal.h>
-#include <sys/ioctl.h>
-#include <stdbool.h>
-#include <unistd.h>
-
-#if __has_include(<jsoncpp/json/json.h>)
-# include <jsoncpp/json/json.h>
-#elif __has_include(<json/json.h>)
-#include <json/json.h>
-#endif
+#include <vector>
 
 #include "manual.hpp"
 #include "logger.hpp"
+
+struct ClientInfo
+{
+    int fd;
+    int id;
+};
+
 
 class Server
 {
@@ -31,14 +20,19 @@ public:
     Server();
     ~Server();
     void start();
-    void set_fd_set();
-    void run_server();
 
 private:
+    void set_fd_set();
+    void run_server();
+    void close_client(int client_fd);
     void handle_clients_request(int client_fd);
+    void add_new_client(int client_fd);
     int setup_server(int port); 
     int accept_client(int server_fd);
-
+    void add_client_id(int id, int client_fd);
+    void send_msg_to_client(int receiver_id, int msg, int sender_id, int sender_fd);
+    
+    std::vector<ClientInfo> clients;
     Logger *logger;
     int server_port;
     std::string server_ip;
