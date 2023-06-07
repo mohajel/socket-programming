@@ -13,6 +13,7 @@
 #include "manual.hpp"
 #include "error.hpp"
 #include "logger.hpp"
+#include "utils.hpp"
 
 using namespace std;
 
@@ -132,19 +133,31 @@ void Server::send_msg_to_client(int receiver_id, int msg, int sender_id, int sen
             throw Error(108);
 
     //find reciver fd
-    for
-    
+    int receiver_fd = NOT_CONNECTED;
+    for (int i = 0; i < clients.size(); i++)
+        if (clients[i].id == receiver_id)
+        {
+            receiver_fd = clients[i].fd;
+            break;
+        }
 
-    // int receiver_fd = get_client_fd(receiver_id);
-    // if (sender_fd == NOT_CONNECTED || receiver_fd == NOT_CONNECTED)
-    //     throw Error(103);
-    // string msg_str = to_string(msg);
-    // send(sender_fd, msg_str.c_str(), msg_str.size(), 0);
-    // send(receiver_fd, msg_str.c_str(), msg_str.size(), 0);
+    if (receiver_fd == NOT_CONNECTED)
+        throw Error(109);
+
+    //cant send to self
+    if (receiver_fd == sender_fd)
+        throw Error(111);
+
+    string msg_str = "client with ID = " + to_string(sender_id) + ":: " + to_string(msg);
+    send(receiver_fd, msg_str.c_str(), msg_str.size(), 0);
 }
 
 void Server::add_client_id(int id, int client_fd)
 {
+    for (int i = 0; i < clients.size(); i++)
+        if (clients[i].id == id)
+            throw Error(110);
+
     for (int i = 0; i < clients.size(); i++)
         if (clients[i].fd == client_fd)
         {

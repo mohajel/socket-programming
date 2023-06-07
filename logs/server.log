@@ -14,3 +14,62 @@
 [Wed Jun  7 19:13:52 2023] client with fd = 5 closed
 [Wed Jun  7 19:28:06 2023] SERVER_BINDED_SUCCESSFULLY
 [Wed Jun  7 19:28:06 2023] SERVER_IS_LISTENING
+[Wed Jun  7 22:02:36 2023] SERVER_BINDED_SUCCESSFULLY
+[Wed Jun  7 22:02:36 2023] SERVER_IS_LISTENING
+[Wed Jun  7 22:02:57 2023] new client with fd = 5 joined
+[Wed Jun  7 22:03:03 2023] client with fd = 5 :: salam
+[Wed Jun  7 22:03:03 2023] server response to client with fd = 5 :: [31mError 106: INVALID_COMMAND_FORMAT[37m
+[Wed Jun  7 22:03:20 2023] new client with fd = 6 joined
+[Wed Jun  7 22:04:45 2023] client with fd = 6 :: client 12
+[Wed Jun  7 22:04:45 2023] server response to client with fd = 6 :: REQUEST_HANDELED_SUCCESSFULLY
+[Wed Jun  7 22:05:03 2023] client with fd = 5 :: client 12
+[Wed Jun  7 22:05:03 2023] server response to client with fd = 5 :: REQUEST_HANDELED_SUCCESSFULLY
+[Wed Jun  7 22:05:50 2023] client with fd = 6 :: client 22
+[Wed Jun  7 22:05:50 2023] server response to client with fd = 6 :: [31mError 104: CLIENT_ALREADY_HAS_AN_ID[37m
+[Wed Jun  7 22:05:56 2023] client with fd = 6 :: client 12
+[Wed Jun  7 22:05:56 2023] server response to client with fd = 6 :: [31mError 104: CLIENT_ALREADY_HAS_AN_ID[37m
+[Wed Jun  7 22:11:13 2023] SERVER_BINDED_SUCCESSFULLY
+[Wed Jun  7 22:11:13 2023] SERVER_IS_LISTENING
+[Wed Jun  7 22:11:15 2023] new client with fd = 5 joined
+[Wed Jun  7 22:11:23 2023] client with fd = 5 :: client 22
+[Wed Jun  7 22:11:23 2023] server response to client with fd = 5 :: REQUEST_HANDELED_SUCCESSFULLY
+[Wed Jun  7 22:11:30 2023] new client with fd = 6 joined
+[Wed Jun  7 22:11:56 2023] client with fd = 6 :: client 22
+[Wed Jun  7 22:11:56 2023] server response to client with fd = 6 :: [31mError 110: ID_ALREADY_ASSIGNED[37m
+[Wed Jun  7 22:12:07 2023] client with fd = 6 :: client 23
+[Wed Jun  7 22:12:07 2023] server response to client with fd = 6 :: REQUEST_HANDELED_SUCCESSFULLY
+[Wed Jun  7 22:12:12 2023] client with fd = 6 :: client 23
+[Wed Jun  7 22:12:12 2023] server response to client with fd = 6 :: [31mError 110: ID_ALREADY_ASSIGNED[37m
+[Wed Jun  7 22:12:16 2023] client with fd = 6 :: send
+[Wed Jun  7 22:12:16 2023] server response to client with fd = 6 :: [31mError 106: INVALID_COMMAND_FORMAT[37m
+[Wed Jun  7 22:12:40 2023] client with fd = 6 :: send 22 11 23
+[Wed Jun  7 22:12:40 2023] server response to client with fd = 6 :: REQUEST_HANDELED_SUCCESSFULLY
+[Wed Jun  7 22:13:00 2023] client with fd = 6 :: send 23 11 23
+[Wed Jun  7 22:13:00 2023] server response to client with fd = 6 :: REQUEST_HANDELED_SUCCESSFULLY
+[Wed Jun  7 22:13:38 2023] client with fd = 6 :: send 24 11 23
+[Wed Jun  7 22:13:38 2023] server response to client with fd = 6 :: [31mError 109: REQUESTED_CLIENT_IS_NOT_CONNECTED[37m
+[Wed Jun  7 22:13:50 2023] client with fd = 6 :: send 22 234 22
+[Wed Jun  7 22:13:50 2023] server response to client with fd = 6 :: [31mError 108: INVALID_SENDER_ID[37m
+[Wed Jun  7 22:14:00 2023] client with fd = 6 :: send 22 22 22
+[Wed Jun  7 22:14:00 2023] server response to client with fd = 6 :: [31mError 108: INVALID_SENDER_ID[37m
+[Wed Jun  7 22:15:28 2023] client with fd = 6 left
+[Wed Jun  7 22:15:29 2023] client with fd = 5 left
+[Wed Jun  7 22:15:41 2023] SERVER_BINDED_SUCCESSFULLY
+[Wed Jun  7 22:15:41 2023] SERVER_IS_LISTENING
+[Wed Jun  7 22:15:46 2023] new client with fd = 5 joined
+[Wed Jun  7 22:15:52 2023] new client with fd = 6 joined
+[Wed Jun  7 22:15:56 2023] client with fd = 5 :: client 22
+[Wed Jun  7 22:15:56 2023] server response to client with fd = 5 :: REQUEST_HANDELED_SUCCESSFULLY
+[Wed Jun  7 22:16:00 2023] client with fd = 6 :: client rr
+[Wed Jun  7 22:16:00 2023] server response to client with fd = 6 :: INVALID_NUMBER_FORMAT
+[Wed Jun  7 22:16:04 2023] client with fd = 6 :: client 22
+[Wed Jun  7 22:16:04 2023] server response to client with fd = 6 :: [31mError 110: ID_ALREADY_ASSIGNED[37m
+[Wed Jun  7 22:16:10 2023] client with fd = 6 :: client 23
+[Wed Jun  7 22:16:10 2023] server response to client with fd = 6 :: REQUEST_HANDELED_SUCCESSFULLY
+[Wed Jun  7 22:16:17 2023] client with fd = 6 :: send 23 232 23
+[Wed Jun  7 22:16:17 2023] server response to client with fd = 6 :: [31mError 111: CANT_SEND_MASSEGE_TO_YOURSELF[37m
+[Wed Jun  7 22:16:26 2023] client with fd = 5 :: send 23 22 22
+[Wed Jun  7 22:16:26 2023] server response to client with fd = 5 :: REQUEST_HANDELED_SUCCESSFULLY
+[Wed Jun  7 22:17:04 2023] client with fd = 5 :: send 22 22 23
+[Wed Jun  7 22:17:04 2023] server response to client with fd = 5 :: [31mError 108: INVALID_SENDER_ID[37m
+[Wed Jun  7 22:17:07 2023] client with fd = 5 left
