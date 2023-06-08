@@ -16,7 +16,7 @@ Client::Client()
 {
 }
 
-void Client::connect_and_send_requests_to_server() 
+void Client::start() 
 {
     // "hostName":"127.0.0.1",
     // "commandChannelPort":

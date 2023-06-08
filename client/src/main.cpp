@@ -21,7 +21,7 @@
 int main(int argc, char const *argv[]) 
 {
     Client client;
-    client.connect_and_send_requests_to_server();
+    client.start();
 
     return 0;
 }

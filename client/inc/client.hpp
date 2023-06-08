@@ -21,7 +21,7 @@ class Client
 {
 public:
     Client();
-    void connect_and_send_requests_to_server();
+    void start();
     void connect_to_server(int port, const char* ip);
     void set_fd_set();
     void send_requests();
