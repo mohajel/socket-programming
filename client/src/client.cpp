@@ -12,17 +12,19 @@ using namespace std;
 Client::Client()
     :
     server_fd(NOT_CONNECTED),
+    has_id(false),
     max_sd(0)
 {
+    // this->logger = new Logger("client");
 }
 
-void Client::start() 
+void Client::start(int port, const char* server_ip) 
 {
     // "hostName":"127.0.0.1",
     // "commandChannelPort":
     // FileDataContainers::config config = file_handler.read_config(Paths::CONFIG_SERVER_DATA_PATH);
     // connect_to_server(config.commandChannelPort, config.hostName.c_str());
-    connect_to_server(8181, "127.0.0.1");
+    connect_to_server(port, server_ip);
     set_fd_set();
     send_requests();
 }

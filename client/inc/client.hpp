@@ -15,20 +15,24 @@
 #include <stdbool.h>
 
 #include "manual.hpp"
+#include "logger.hpp"
 
 
 class Client
 {
 public:
     Client();
-    void start();
+    void start(int port, const char* server_ip);
+private:
+
     void connect_to_server(int port, const char* ip);
     void set_fd_set();
     void send_requests();
 
-private:
+    Logger* logger;
     int server_fd;
     fd_set master_set;
     fd_set working_set;
+    bool has_id;
     int max_sd;
 };

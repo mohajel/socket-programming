@@ -21,7 +21,7 @@
 int main(int argc, char const *argv[]) 
 {
     Client client;
-    client.start();
+    client.start(PORT, SERVER_IP);
 
     return 0;
 }
