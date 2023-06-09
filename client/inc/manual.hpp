@@ -38,9 +38,7 @@ struct Info
             {101, "CANNOT_CONNECT_TO_SERVER"},
             {102, "SERVER_DISCONNECTED"},
             {103, "PROBLEM_OCCURED_WHILE_SENDING_MESSAGE"},
-
             {200, "CONNECTED_TO_SERVER_SUCCEFFULLY"},
-
         };
         return messages;
     }

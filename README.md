@@ -163,6 +163,51 @@ private:
     void send_msg_to_client(int receiver_id, int msg, int sender_id, int sender_fd)
 ```
 # Tests
+Here, I provide some tests to show how our program works.
+I handled all the edge cases and errors possible in this senario.
 
+## Test 1 : 
+Requesting a *client_fd* that has already been assigened to other client.
 ![My Image](./test-pictures/1.png)
+
+## Test 2 :
+Requesting a second *client_fd* 
 ![My Image](./test-pictures/2.png)
+
+## Test 3 :
+Invalid command and number format
+![My Image](./test-pictures/3.png)
+
+## Test 4 :
+Sending a message to a client that is not connected
+![My Image](./test-pictures/4.png)
+
+## Test 5 :
+Sending a message to yourself
+![My Image](./test-pictures/5.png)
+
+## Test 6 :
+Sending a message to a client that is connected
+![My Image](./test-pictures/6.png)
+
+## Test 7 :
+Sending a message to a client that is connected but with wrong id
+![My Image](./test-pictures/7.png)
+
+## Test 8 :
+Client disconnecting
+![My Image](./test-pictures/8.png)
+
+## Test 9 :
+Server disconnecting
+![My Image](./test-pictures/9.png)
+
+## Test 10 :
+Server log file
+![My Image](./test-pictures/10.png)
+
+## Test 11 :
+Clients log file
+![My Image](./test-pictures/11.png)
+![My Image](./test-pictures/12.png)
+
