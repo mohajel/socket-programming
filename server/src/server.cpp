@@ -135,6 +135,15 @@ void Server::send_msg_to_client(int receiver_id, int msg, int sender_id, int sen
     for (int i = 0; i < clients.size(); i++)
         if (clients[i].fd != sender_fd && clients[i].id == sender_id)
             throw Error(108);
+    bool sender_id_is_valid = false;
+    for (int i = 0; i < clients.size(); i++)
+        if (clients[i].fd == sender_fd && clients[i].id == sender_id)
+        {
+            sender_id_is_valid = true;
+            break;;
+        }
+    if (!sender_id_is_valid)
+        throw Error(108);
 
     //find reciver fd
     int receiver_fd = NOT_CONNECTED;
