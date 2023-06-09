@@ -21,6 +21,7 @@ Server::Server()
     : server_fd(NOT_CONNECTED),
       server_port(SERVER_PORT),
       server_ip(SERVER_IP),
+      in_closing_status(false),
       max_sd(0)
 {
     this->logger = new Logger(Paths::LOG_SERVER_PATH);
@@ -92,7 +93,7 @@ void Server::handle_clients_request(int client_fd)
 {
     char command[MAX_STRING_SIZE] = {0};
     if (recv(client_fd, command, MAX_STRING_SIZE, 0) == 0) // EOF client sending close signal
-        close_client(client_fd);
+        this->close_client(client_fd);
     else // client sending msg
     {
         string server_response = Info::status[200];
@@ -122,6 +123,11 @@ void Server::handle_clients_request(int client_fd)
         int status = send(client_fd, server_response.c_str(), strlen(server_response.c_str()), 0);
         if (status == 0)
             logger->log(Info::status[107] + "FD=" + to_string(client_fd), KRED);
+        if (in_closing_status == true)
+        {
+            this->close_client(client_fd);
+            in_closing_status = false;
+        }
     }
 }
 
@@ -154,19 +160,28 @@ void Server::send_msg_to_client(int receiver_id, int msg, int sender_id, int sen
 
 void Server::add_client_id(int id, int client_fd)
 {
-    for (int i = 0; i < clients.size(); i++)
-        if (clients[i].id == id)
-            throw Error(110);
+    try
+    {
+        for (int i = 0; i < clients.size(); i++)
+            if (clients[i].id == id)
+                throw Error(110);
 
-    for (int i = 0; i < clients.size(); i++)
-        if (clients[i].fd == client_fd)
-        {
-            if (clients[i].id != NO_ID_ASSIGNED)
-                throw Error(104);
+        for (int i = 0; i < clients.size(); i++)
+            if (clients[i].fd == client_fd)
+            {
+                if (clients[i].id != NO_ID_ASSIGNED)
+                    throw Error(104);
 
-            clients[i].id = id;
-            break;
-        }
+                clients[i].id = id;
+                break;
+            }
+    }
+    catch(Error &e)
+    {
+        this->logger->log(Info::status[112] + " FD=" + to_string(client_fd), KRED);
+        in_closing_status = true;
+        throw e;
+    }
 }
 
 void Server::close_client(int client_fd)
@@ -179,7 +194,7 @@ void Server::close_client(int client_fd)
             clients.erase(clients.begin() + i);
             break;
         }
-    this->logger->log("client with fd = " + to_string(client_fd) + " left", KRED);
+    this->logger->log("client with fd = " + to_string(client_fd) + " left", KBLU);
 }
 
 int Server::setup_server(int port)

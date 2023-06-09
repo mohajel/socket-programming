@@ -27,10 +27,6 @@
 #define KMAG "\x1B[35m"
 #define KCYN "\x1B[36m"
 #define KWHT "\x1B[37m"
-
-//messages
-#define WELCOME_MESSAGE "welcome to khane ghamar khanom\n0. signin\n1. signup\nCommand -> <Choice number>\n"
-
 namespace Paths
 {
     const std::string LOG_SERVER_PATH = "../logs/server.log";
@@ -53,6 +49,7 @@ struct Info
             {109, "REQUESTED_CLIENT_IS_NOT_CONNECTED"},
             {110, "ID_ALREADY_ASSIGNED"},
             {111, "CANT_SEND_MASSEGE_TO_YOURSELF"},
+            {112, "COULD_NOT_ASSIGN_ID_TO_CLIENT"},
 
             {200, "REQUEST_HANDELED_SUCCESSFULLY"},
             {201, "USER_LOGED_OUT_SUCCESSFULLY"},

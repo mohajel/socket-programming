@@ -31,7 +31,7 @@ string Logger::get_time_stamp()
     return timestamp;
 }
 
-void Logger::log(string message, string colour = KWHT) 
+void Logger::log(string message, string colour) 
 {
     if (message == "")
         return;

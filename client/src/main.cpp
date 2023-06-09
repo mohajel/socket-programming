@@ -18,9 +18,18 @@
 #include "manual.hpp"
 #include "client.hpp"
 
+using namespace std;
+
+map<int,string> Info::status =  Info::create_map();
+
 int main(int argc, char const *argv[]) 
 {
-    Client client;
+    if (argc != 2)
+    {
+        printf("Usage: ./client <client_id>\n");
+        exit(EXIT_FAILURE);
+    }
+    Client client(atoi(argv[1]));
     client.start(PORT, SERVER_IP);
 
     return 0;

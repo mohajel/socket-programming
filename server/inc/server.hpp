@@ -35,6 +35,7 @@ private:
     std::vector<ClientInfo> clients;
     Logger *logger;
     int server_port;
+    bool in_closing_status;
     std::string server_ip;
 
     int server_fd;
