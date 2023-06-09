@@ -166,48 +166,52 @@ private:
 Here, I provide some tests to show how our program works.
 I handled all the edge cases and errors possible in this senario.
 
+## Test 0 :
+Client can connect to server.
+![My Image](./test-pictures/test_0.png)
+
 ## Test 1 : 
 Requesting a *client_fd* that has already been assigened to other client.
-![My Image](./test-pictures/1.png)
+![My Image](./test-pictures/test_1.png)
 
 ## Test 2 :
 Requesting a second *client_fd* 
-![My Image](./test-pictures/2.png)
+![My Image](./test-pictures/test_2.png)
 
 ## Test 3 :
 Invalid command and number format
-![My Image](./test-pictures/3.png)
+![My Image](./test-pictures/test_3.png)
 
 ## Test 4 :
 Sending a message to a client that is not connected
-![My Image](./test-pictures/4.png)
+![My Image](./test-pictures/test_4.png)
 
 ## Test 5 :
 Sending a message to yourself
-![My Image](./test-pictures/5.png)
+![My Image](./test-pictures/test_5.png)
 
 ## Test 6 :
 Sending a message to a client that is connected
-![My Image](./test-pictures/6.png)
+![My Image](./test-pictures/test_6.png)
 
 ## Test 7 :
-Sending a message to a client that is connected but with wrong id
-![My Image](./test-pictures/7.png)
+Sending a message to a client that is connected but with wrong sender id
+![My Image](./test-pictures/test_7.png)
 
 ## Test 8 :
 Client disconnecting
-![My Image](./test-pictures/8.png)
+![My Image](./test-pictures/test_8.png)
 
 ## Test 9 :
 Server disconnecting
-![My Image](./test-pictures/9.png)
+![My Image](./test-pictures/test_9.png)
 
 ## Test 10 :
 Server log file
-![My Image](./test-pictures/10.png)
+![My Image](./test-pictures/test_10.png)
 
 ## Test 11 :
 Clients log file
-![My Image](./test-pictures/11.png)
-![My Image](./test-pictures/12.png)
+![My Image](./test-pictures/test_11.png)
+![My Image](./test-pictures/test_12.png)
 
