@@ -12,10 +12,8 @@ struct ClientInfo
     int id;
 };
 
-
 class Server
 {
-
 public:
     Server();
     ~Server();

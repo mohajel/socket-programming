@@ -15,7 +15,7 @@ Client::Client(int client_id)
       client_id(client_id),
       max_sd(0)
 {
-    this->logger = new Logger("client_" + to_string(client_id) + ".log");
+    this->logger = new Logger(Paths::LOG_SERVER_PATH + "client_" + to_string(client_id) + ".log");
 }
 
 Client::~Client()
